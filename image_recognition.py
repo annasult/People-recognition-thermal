@@ -94,11 +94,11 @@ def main():
 
         if args.output:
             writer.write(annotated_frame)
-        else:
-            if args.show:
-                cv2.imshow("YOLO Inference", annotated_frame)
-                if cv2.waitKey(1) & 0xFF == ord("q"):
-                    break
+            
+        if args.show:
+            cv2.imshow("YOLO Inference", annotated_frame)
+            if cv2.waitKey(1) & 0xFF == ord("q"):
+                break
 
     elapsed_time = time.perf_counter() - start
     release(cap, writer)
