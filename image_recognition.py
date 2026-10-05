@@ -11,6 +11,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", required=True, help="input filename")
     parser.add_argument("-o", "--output", help="output filename")
+    parser.add_argument("-n", "-no-show", dest="show", action="store_false", help="disable GUI display window")
     parser.add_argument("-c", "--confidence", type=int, choices = range(1, 100), metavar="1-99", 
                             default=50, help="confidence threshold in %% (default: 50)" )
     parser.add_argument("-v", "--verbose", action="count", default=0, help="-v per-frame YOLO processing")
@@ -94,9 +95,10 @@ def main():
         if args.output:
             writer.write(annotated_frame)
         else:
-            cv2.imshow("YOLO Inference", annotated_frame)
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-                break
+            if args.show:
+                cv2.imshow("YOLO Inference", annotated_frame)
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
 
     elapsed_time = time.perf_counter() - start
     release(cap, writer)
