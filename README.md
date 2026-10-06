@@ -39,6 +39,12 @@ python image_recognition.py --help
 ## Output
 Each frame shows the number of people detected and the processing FPS. If a person is detected, the bounding box is drawn, showing the detection confidence. Only boxes above the threshold set with -c (the default is 50%) are drawn.
 
+| Provided video (25 % threshold) | OSU dataset |
+|---|---|
+| ![Detection on provided video](results/video_frame.png) | ![Detection on OSU dataset](results/osu_frame.png) |
+
+The full processed video (25 % threshold) is available in [`processed_video_25.avi`](results/processed_video_c_25.avi).
+
 The report is printed in the end, stating the model used, and processing time elapsed. A simple metric to evaluate the accuracy is used. The frames with at least one "hit" - one detection are considered succesful. The accuracy then is the ration between succesful and all frames. The total averaged FPS is shown as well.
 
 ## Model
